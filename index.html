@@ -16,7 +16,7 @@
 
 <body>
 
-
+<div class="container-fluid">
   <!-- Inicia Menú -->
   <nav id="menu" class="navbar navbar-expand-lg fixed-top bg-white navbar-light start">
     <div class="container-fluid">
@@ -67,11 +67,9 @@
   </nav>
   <!-- Menú end -->
 
-  </div><!-- #content -->
 
-  <section class="parallax container" id="banner" style="width: 100%;">
+  <section class="parallax" id="banner">
     <div class="banner-caption">
-      <img class="banner" src="./media/banner.png" alt="">
       <h1 class="banner-caption banner-title" data-aos="zoom-in" data-aos-delay="100">
         Marcas exclusivas
       </h1>
@@ -79,11 +77,8 @@
         y diseños de alta calidad
       </p>
     </div>
-    <span class="banner-scroll">
-      <i class="fas fa-chevron-down fa-2x"></i>
-    </span>
   </section>
-
+</div>
 
   <div class="container">
     <div class="row py-5" data-aos="fade-up" data-aos-duration="2000">
@@ -294,17 +289,15 @@
   }
 
   .parallax {
+    position: relative;
     width: 100%;
-    background: #FFF fixed no-repeat;
-    background-size: cover;
+    height: 447px;
   }
 
   #banner {
-    position: relative;
-    height: 647px;
+    background: url(./media/banner.png) fixed no-repeat;
     background-position: 0px -21.6px;
-    background: url(medias/images/banner02.jpg) fixed;
-    background-size: cover;
+    background-size: 100%;
   }
 
   .banner-caption {
@@ -498,62 +491,15 @@
   $(document).ready(function () {
     AOS.init();
 
-    $('.banner-scroll').on('click', function (e) {
-      $('html, body').animate({
-        scrollTop: $(window).height() - 56
-      }, 0);
-    });
-
-    $('#backtop').on('click', function (e) {
-      $('html, body').animate({ scrollTop: 0 }, 0);
-    });
-
-    if ($(window).width() <= 430) {
-      $('#banner').css({ 'background-size': 'initial' });
-    }
-    else if ($(window).width() > 992) {
-      $('#banner').css({ "height": $(window).height() + "px" });
-    }
-
-    $(".navbar").removeClass("bg-white");
-    $(".navbar").removeClass("navbar-light");
-    $(".navbar").addClass("navbar-dark");
     banner();
   });
 
 
   function banner() {
     var scroll;
-    var flag = false;
 
     $(window).scroll(function () {
       scroll = $(window).scrollTop();
-
-      if (scroll > 150) {
-        if (!flag) {
-          $(".navbar").removeClass("start");
-          $(".navbar").addClass("end");
-
-          $(".navbar").removeClass("navbar-dark");
-          $(".navbar").addClass("bg-white");
-          $(".navbar").addClass("navbar-light");
-
-          flag = true;
-        }
-      }
-      else {
-        if (flag) {
-          $(".navbar").removeClass("end");
-          $(".navbar").addClass("start");
-
-          $(".navbar").removeClass("bg-white");
-          $(".navbar").removeClass("navbar-light");
-          $(".navbar").addClass("navbar-dark");
-
-          flag = false;
-        }
-      }
-
       scroll = -scroll * 0.50;
       $('#banner').css({ 'background-position': '0 ' + scroll + 'px' });
     });
